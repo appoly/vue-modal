@@ -37,7 +37,6 @@ Install Vue Modals with npm
 ```javascript
 import '@appoly/vue-modals';
 
-``````javascript
 <VueModal ref="myModal" timeout="5000">
     <template #header>
         <h1>My Modal</h1>
