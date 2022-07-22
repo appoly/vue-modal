@@ -108,7 +108,7 @@ export default {
     },
     methods: {
         cancelButtonClicked() {
-            this.$emit("cancelled");
+            this.$emit("cancel");
             if (this.closeOnButtonClick) {
                 this.closeModal();
             }

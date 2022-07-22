@@ -1,5 +1,9 @@
 # Vue Modals
 
+<p align="center">
+  <img src="https://www.appoly.co.uk/app/uploads/2022/07/vue-modal-gif.gif" />
+</p>
+
 ## Installation
 
 Install Vue Modals with npm
@@ -47,4 +51,15 @@ import '@appoly/vue-modals';
     </template>
 </VueModal>
 
+```
+## Open Modal
+```javascript
+this.$refs.myModal.openModal();
+```
+
+## Close Modal
+If closeOnButtonClick is turned off you will need to listen for the `confirm` and `cancel` events and close the modal using
+
+```javascript
+this.$refs.myModal.closeModal();
 ```
