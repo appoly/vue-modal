@@ -1,7 +1,7 @@
 {
-  "name": "vue-modal",
+  "name": "@appoly/vue-modal",
   "version": "1.0.0",
-  "description": "",
+  "description": "A simple modal component built with Vue.js",
   "watch":{
     "files": [
       "src/**/*.vue"
@@ -45,7 +45,12 @@
     "email": "calum@appoly.co.uk"
   },
   "license": "ISC",
-  "dependencies": {
-    "watch": "^1.0.2"
-  }
+      "bugs": {
+        "url": "https://github.com/appoly/vue-modal/issues"
+  },
+  "homepage": "https://github.com/appoly/vue-modal#readme",
+  "repository": {
+        "type": "git",
+        "url": "git+https://github.com/appoly/vue-modal.git"
+    }
 }
