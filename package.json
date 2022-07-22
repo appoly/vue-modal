@@ -1,0 +1,51 @@
+{
+  "name": "vue-modal",
+  "version": "1.0.0",
+  "description": "",
+  "watch":{
+    "files": [
+      "src/**/*.vue"
+    ],
+    "tasks": "default"
+  },
+  "scripts": {
+    "serve": "vue-cli-service serve --open",
+    "build": "npm run build:umd & npm run build:es & npm run build:unpkg",
+    "watch": "npm run build --watch",
+    "build-bundle": "vue-cli-service build --target lib --name vue-modal ./src/index.vue",
+    "build:es": "rollup --config build/rollup.config.js --format es --file dist/vue-modal.esm.js",
+    "build:umd": "rollup --config build/rollup.config.js --format umd --file dist/vue-modal.umd.js",
+    "build:unpkg": "rollup --config build/rollup.config.js --format iife --file dist/vue-modal.min.js"
+  },
+  "main": "dist/vue-modal.umd.js",
+  "module": "dist/vue-modal.esm.js",
+  "unpkg": "dist/vue-modal.min.js",
+  "browser": {
+    "./sfc": "src/VueModal.vue"
+  },
+  "files": [
+    "dist/*",
+    "src/*",
+    "public/*",
+    "*.json",
+    "*.js"
+  ],
+  "devDependencies": {
+    "node-sass": "^7.0.1",
+    "rollup": "^1.17.0",
+    "rollup-plugin-buble": "^0.19.8",
+    "rollup-plugin-commonjs": "^10.0.1",
+    "rollup-plugin-vue": "^5.0.1",
+    "sass-loader": "^13.0.2",
+    "vue": "^2.6.10",
+    "vue-template-compiler": "^2.6.10"
+  },
+  "author": {
+    "name": "Calum Chamberlain",
+    "email": "calum@appoly.co.uk"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "watch": "^1.0.2"
+  }
+}
