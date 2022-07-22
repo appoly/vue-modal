@@ -1,4 +1,4 @@
-# Vue Modals
+# Vue Modal
 
 <p align="center">
   <img src="https://www.appoly.co.uk/app/uploads/2022/07/vue-modal-gif.gif" />
@@ -6,10 +6,10 @@
 
 ## Installation
 
-Install Vue Modals with npm
+Install Vue Modal with npm
 
 ```bash
-  npm install @appoly/vue-modals
+  npm install @appoly/vue-modal
 ```
 
 ## Props
@@ -39,7 +39,7 @@ Install Vue Modals with npm
 ## Usage/Examples
 
 ```javascript
-import '@appoly/vue-modals';
+import VueModal from '@appoly/vue-modal;
 
 <VueModal ref="myModal" timeout="5000">
     <template #header>
