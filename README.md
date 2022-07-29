@@ -9,7 +9,7 @@
 Install Vue Modal with npm
 
 ```bash
-  npm install @appoly/vue-modal
+npm install @appoly/vue-modal
 ```
 
 ## Props
@@ -42,7 +42,9 @@ Install Vue Modal with npm
 
 ```javascript
 import VueModal from '@appoly/vue-modal';
+```
 
+```vue
 <VueModal ref="myModal" timeout="5000">
     <template #header>
         <h1>My Modal</h1>
@@ -52,7 +54,6 @@ import VueModal from '@appoly/vue-modal';
         <p>This modal will hide in 5 seconds</p>
     </template>
 </VueModal>
-
 ```
 ## Open Modal
 ```javascript
