@@ -1,7 +1,7 @@
 # Vue Modal
 
 <p align="center">
-  <img src="https://www.appoly.co.uk/app/uploads/2022/07/vue-modal-gif.gif" />
+  <img src="https://www.appoly.co.uk/app/uploads/2022/07/vue-modal-2.gif" />
 </p>
 
 ## Installation
