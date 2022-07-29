@@ -1,6 +1,6 @@
 {
   "name": "@appoly/vue-modal",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A simple modal component built with Vue.js",
   "watch":{
     "files": [
@@ -52,5 +52,6 @@
   "repository": {
         "type": "git",
         "url": "git+https://github.com/appoly/vue-modal.git"
-    }
+  },
+  "keywords": ["vuejs", "modals", "modal", "popup", "toast"]
 }
