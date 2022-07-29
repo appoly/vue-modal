@@ -23,9 +23,11 @@ Install Vue Modal with npm
 | `cancelButtonText`    | `string` | Cancel  | Text displayed on the cancel button                                                                |
 | `cancelButtonClass`   | `string` |         | Custom class for the cancel button                                                                 |
 | `closeOnButtonClick`  | `bool`   | `True`  | Modal can be closed on cancel/confirm click or an event is emitted and can be closed via functions |
-| `animate`             | `bool`   | `True`  | Should the modal animate on entry/leave                                                            |
-| `animationType`       | `string` | zoom    | The type of animation - options include - `zoom, bounce & fade`                                    |
+| `animation`           | `string` | `zoom`  | Animation type, options include `zoom, bounce, fade & none`                                        |
 | `timeout`             | `number` | `0`     | Should the modal automatically close, time set in milliseconds                                     |
+| `width`               | `number` | `700px` | Width of the modal in px, rem, em, %. Just numbers default to px                                   |
+| `sticky-header`       | `bool`   | `False` | Should the modal have a sticky header                                                              |
+| `sticky-footer`       | `bool`   | `False` | Should the modal have a sticky footer                                                              |
 
 ## Slots
 
@@ -39,7 +41,7 @@ Install Vue Modal with npm
 ## Usage/Examples
 
 ```javascript
-import VueModal from '@appoly/vue-modal;
+import VueModal from '@appoly/vue-modal';
 
 <VueModal ref="myModal" timeout="5000">
     <template #header>

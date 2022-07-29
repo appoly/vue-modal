@@ -5,33 +5,30 @@
         </transition>
 
         <transition :name="modalTransition">
-            <div v-if="show" class="modal">
+            <div v-if="initiated" v-show="show" class="modal" :style="{ width: computedWidth }">
+                <header :class="headerClass">
+                    <slot name="header" />
+                </header>
                 <div class="model-content">
-                    <header>
-                        <slot name="header" />
-                    </header>
-
-                    <section class="mt-4">
+                    <section>
                         <slot name="body" />
                     </section>
-
-                    <footer>
-                        <div class="d-block">
-                            <slot name="footer" />
-                        </div>
-                        <div class="mt-4 d-flex justify-content-end">
-                            <slot name="buttons">
-                                <button type="button" :class="cancelButtonClass" @click="cancelButtonClicked">
-                                    {{ cancelButtonText }}
-                                </button>
-                                <button v-if="showConfirmButton" type="button" :class="confirmButtonClass"
-                                    @click="confirm">
-                                    {{ confirmButtonText }}
-                                </button>
-                            </slot>
-                        </div>
-                    </footer>
                 </div>
+                <footer :class="footerClass">
+                    <div class="d-block">
+                        <slot name="footer" />
+                    </div>
+                    <div class="buttons-footer d-flex justify-content-end">
+                        <slot name="buttons">
+                            <button type="button" :class="cancelButtonClass" @click="cancelButtonClicked">
+                                {{ cancelButtonText }}
+                            </button>
+                            <button v-if="showConfirmButton" type="button" :class="confirmButtonClass" @click="confirm">
+                                {{ confirmButtonText }}
+                            </button>
+                        </slot>
+                    </div>
+                </footer>
             </div>
         </transition>
     </div>
@@ -69,11 +66,7 @@ export default {
             type: Boolean,
             default: true,
         },
-        animate: {
-            type: Boolean,
-            default: true,
-        },
-        animationType: {
+        animation: {
             type: String,
             default: "zoom",
         },
@@ -81,11 +74,32 @@ export default {
             type: Number,
             default: 0,
         },
+        stickyFooter: {
+            type: Boolean,
+            default: false,
+        },
+        stickyHeader: {
+            type: Boolean,
+            default: false,
+        },
+        width: {
+            type: String,
+            default: "700px",
+        }
     },
     data() {
         return {
+            initiated: false,
             show: false,
         };
+    },
+    created() {
+        //listen for esc key press
+        window.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' || event.key === 'Esc' || event.key === 27) {
+                this.handleOutsideClick();
+            }
+        });
     },
     watch: {
         show(newValue) {
@@ -99,12 +113,41 @@ export default {
         }
     },
     computed: {
+        animate() {
+            const animations = [
+                'zoom', 'bounce', 'fade'
+            ];
+            return animations.includes(this.animation);
+        },
         modalTransition() {
-            return this.animate ? this.animationType : "";
+            return this.animate ? this.animation : "";
         },
         backdropTransition() {
             return this.animate ? "fade" : "";
         },
+        headerClass() {
+            return this.stickyHeader ? "--sticky" : "";
+        },
+        footerClass() {
+            return this.stickyFooter ? "--sticky" : "";
+        },
+        computedWidth() {
+            const possibleWidthEndings = [
+                'px', '%', 'em', 'rem'
+            ];
+            // if width has a possibleWidthEnding then return it as is
+            for (let i = 0; i < possibleWidthEndings.length; i++) {
+                if (this.width.endsWith(possibleWidthEndings[i])) {
+                    return this.width;
+                }
+            }
+            // if width is not a number return default 700px
+            if (isNaN(this.width)) {
+                return "700px";
+            }
+            // if width is a number return it as a px value
+            return this.width + "px";
+        }
     },
     methods: {
         cancelButtonClicked() {
@@ -128,6 +171,7 @@ export default {
             }
         },
         openModal() {
+            this.initiated = true;
             this.show = true;
         },
     },
@@ -150,27 +194,29 @@ export default {
 }
 
 .modal {
-    position: absolute;
     position: fixed;
+    display: block;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
     margin: auto;
-    text-align: center;
-    width: fit-content;
     height: fit-content;
-    max-width: 22em;
-    padding: 2rem;
+    width: 700px;
     border-radius: 8px;
-    box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.15);
+    box-shadow: 0 -2px 5px 0 rgb(0 0 0 / 15%);
     background: #FFF;
     z-index: 999;
     transform: none;
+    overflow: auto;
+    max-width: 95%;
+    max-height: 50%;
+    text-align: left;
 
     .model-content {
         // overflow: auto;
         max-height: calc(100vh - 125px);
+        padding: 0em 2em 0em 2em;
     }
 
     &::-webkit-scrollbar {
@@ -180,6 +226,37 @@ export default {
     -ms-overflow-style: none;
     /* IE and Edge */
     scrollbar-width: none;
+
+    header {
+        &.--sticky {
+            position: sticky;
+            top: 0;
+            background-color: inherit;
+            z-index: 1055;
+            margin: 0;
+        }
+    }
+
+    header,
+    footer {
+        margin: 1em 2em 1em 2em;
+    }
+
+    footer {
+        &.--sticky {
+            position: sticky;
+            bottom: 0;
+            background-color: inherit;
+            z-index: 1055;
+            margin: 0;
+        }
+
+        .buttons-footer {
+            display: flex;
+            justify-content: flex-end;
+            padding: 0.5em 0em 1em 1em;
+        }
+    }
 }
 
 .bounce-enter-active {
