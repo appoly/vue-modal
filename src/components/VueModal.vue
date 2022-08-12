@@ -5,7 +5,8 @@
         </transition>
 
         <transition :name="modalTransition">
-            <div v-if="initiated" v-show="show" class="modal" :style="{ width: computedWidth }">
+            <div v-if="initiated" v-show="show" class="modal"
+                :style="{ 'width': computedWidth, 'max-height': computedMaxHeight }">
                 <header :class="headerClass">
                     <slot name="header" />
                 </header>
@@ -85,7 +86,11 @@ export default {
         width: {
             type: String,
             default: "700px",
-        }
+        },
+        maxHeight: {
+            type: String,
+            default: "75%",
+        },
     },
     data() {
         return {
@@ -147,6 +152,23 @@ export default {
             }
             // if width is a number return it as a px value
             return this.width + "px";
+        },
+        computedMaxHeight() {
+            const possibleMaxHeightEndings = [
+                'px', '%', 'em', 'rem'
+            ];
+            // if maxHeight has a possibleMaxHeightEnding then return it as is
+            for (let i = 0; i < possibleMaxHeightEndings.length; i++) {
+                if (this.maxHeight.endsWith(possibleMaxHeightEndings[i])) {
+                    return this.maxHeight;
+                }
+            }
+            // if maxHeight is not a number return default 75%
+            if (isNaN(this.maxHeight)) {
+                return "75%";
+            }
+            // if maxHeight is a number return it as a px value
+            return this.maxHeight + "px";
         }
     },
     methods: {
@@ -208,7 +230,7 @@ export default {
     z-index: 999;
     transform: none;
     max-width: 95%;
-    max-height: 50%;
+    max-height: 75%;
     text-align: left;
     overflow: auto;
     height: fit-content;

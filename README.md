@@ -31,7 +31,8 @@ npm install @appoly/vue-modal
 | `closeOnButtonClick`  | `bool`   | `True`  | Modal can be closed on cancel/confirm click or an event is emitted and can be closed via functions |
 | `animation`           | `string` | `zoom`  | Animation type, options include `zoom, bounce, fade & none`                                        |
 | `timeout`             | `number` | `0`     | Should the modal automatically close, time set in milliseconds                                     |
-| `width`               | `number` | `700px` | Width of the modal in px, rem, em, %. Just numbers default to px                                   |
+| `width`               | `string` | `700px` | Width of the modal in px, rem, em, %. Just numbers default to px                                   |
+| `maxHeight`           | `string` | `75%`   | Height of the modal in px, rem, em, %. Just number default to px                                   |
 | `sticky-header`       | `bool`   | `False` | Should the modal have a sticky header                                                              |
 | `sticky-footer`       | `bool`   | `False` | Should the modal have a sticky footer                                                              |
 
