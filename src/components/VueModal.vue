@@ -18,7 +18,7 @@
                     <div class="d-block">
                         <slot name="footer" />
                     </div>
-                    <div class="buttons-footer d-flex justify-content-end">
+                    <div class="buttons-footer">
                         <slot name="buttons">
                             <button type="button" :class="cancelButtonClass" @click="cancelButtonClicked">
                                 {{ cancelButtonText }}
@@ -201,22 +201,26 @@ export default {
     bottom: 0;
     left: 0;
     margin: auto;
-    height: fit-content;
     width: 700px;
     border-radius: 8px;
     box-shadow: 0 -2px 5px 0 rgb(0 0 0 / 15%);
     background: #FFF;
     z-index: 999;
     transform: none;
-    overflow: auto;
     max-width: 95%;
     max-height: 50%;
     text-align: left;
+    overflow: auto;
+    height: fit-content;
 
     .model-content {
-        // overflow: auto;
-        max-height: calc(100vh - 125px);
-        padding: 0em 2em 0em 2em;
+        // max-height: calc(100vh - 125px);
+        margin: 2em;
+        overflow: auto;
+
+        ::-webkit-scrollbar {
+            display: none;
+        }
     }
 
     &::-webkit-scrollbar {
@@ -230,7 +234,6 @@ export default {
     header {
         &.--sticky {
             position: sticky;
-            top: 0;
             background-color: inherit;
             z-index: 1055;
             margin: 0;
@@ -239,22 +242,25 @@ export default {
 
     header,
     footer {
-        margin: 1em 2em 1em 2em;
+        margin: 2em;
     }
 
     footer {
         &.--sticky {
-            position: sticky;
-            bottom: 0;
+            position: absolute;
             background-color: inherit;
             z-index: 1055;
             margin: 0;
+            width: 100%;
+
+            .buttons-footer {
+                margin: 2em
+            }
         }
 
         .buttons-footer {
             display: flex;
             justify-content: flex-end;
-            padding: 0.5em 0em 1em 1em;
         }
     }
 }
