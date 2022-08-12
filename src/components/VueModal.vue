@@ -214,9 +214,7 @@ export default {
     height: fit-content;
 
     .model-content {
-        // max-height: calc(100vh - 125px);
         margin: 2em;
-        overflow: auto;
 
         ::-webkit-scrollbar {
             display: none;
@@ -247,14 +245,15 @@ export default {
 
     footer {
         &.--sticky {
-            position: absolute;
+            position: sticky;
             background-color: inherit;
             z-index: 1055;
             margin: 0;
+            bottom: 0;
             width: 100%;
 
             .buttons-footer {
-                margin: 2em
+                padding: 2em
             }
         }
 
