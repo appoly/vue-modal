@@ -1,57 +1,51 @@
 {
-  "name": "@appoly/vue-modal",
-  "version": "2.0.5",
-  "description": "A simple modal component built with Vue.js",
-  "watch":{
+    "name": "@appoly/vue-modal",
+    "version": "2.0.5",
+    "description": "A simple modal component built with Vue.js",
+    "type": "module",
     "files": [
-      "src/**/*.vue"
+        "dist"
     ],
-    "tasks": "default"
-  },
-  "scripts": {
-    "serve": "vue-cli-service serve --open",
-    "build": "npm run build:umd & npm run build:es & npm run build:unpkg",
-    "watch": "npm run build --watch",
-    "build-bundle": "vue-cli-service build --target lib --name vue-modal ./src/index.vue",
-    "build:es": "rollup --config build/rollup.config.js --format es --file dist/vue-modal.esm.js",
-    "build:umd": "rollup --config build/rollup.config.js --format umd --file dist/vue-modal.umd.js",
-    "build:unpkg": "rollup --config build/rollup.config.js --format iife --file dist/vue-modal.min.js"
-  },
-  "main": "dist/vue-modal.umd.js",
-  "module": "dist/vue-modal.esm.js",
-  "unpkg": "dist/vue-modal.min.js",
-  "browser": {
-    "./sfc": "src/VueModal.vue"
-  },
-  "files": [
-    "dist/*",
-    "src/*",
-    "public/*",
-    "*.json",
-    "*.js"
-  ],
-  "devDependencies": {
-    "node-sass": "^7.0.1",
-    "rollup": "^1.17.0",
-    "rollup-plugin-buble": "^0.19.8",
-    "rollup-plugin-commonjs": "^10.0.1",
-    "rollup-plugin-vue": "^5.0.1",
-    "sass-loader": "^13.0.2",
-    "vue": "^2.6.10",
-    "vue-template-compiler": "^2.6.10"
-  },
-  "author": {
-    "name": "Calum Chamberlain",
-    "email": "calum@appoly.co.uk"
-  },
-  "license": "ISC",
-      "bugs": {
+    "main": "dist/vue-modal.umd.cjs",
+    "module": "dist/vue-modal.js",
+    "exports": {
+        ".": {
+            "import": "./dist/vue-modal.js",
+            "require": "./dist/vue-modal.umd.cjs",
+            "default": "./dist/vue-modal.umd.cjs"
+        }
+    },
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build --mode lib",
+        "preview": "vite preview"
+    },
+    "dependencies": {
+        "vue": "^3.2.45"
+    },
+    "devDependencies": {
+        "@vitejs/plugin-vue": "^4.0.0",
+        "sass": "^1.58.0",
+        "vite": "^4.1.0"
+    },
+    "author": {
+        "name": "Calum Chamberlain",
+        "email": "calum@appoly.co.uk"
+    },
+    "license": "ISC",
+    "bugs": {
         "url": "https://github.com/appoly/vue-modal/issues"
-  },
-  "homepage": "https://github.com/appoly/vue-modal#readme",
-  "repository": {
+    },
+    "homepage": "https://github.com/appoly/vue-modal#readme",
+    "repository": {
         "type": "git",
         "url": "git+https://github.com/appoly/vue-modal.git"
-  },
-  "keywords": ["vuejs", "modals", "modal", "popup", "toast"]
+    },
+    "keywords": [
+        "vuejs",
+        "modals",
+        "modal",
+        "popup",
+        "toast"
+    ]
 }
