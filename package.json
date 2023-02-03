@@ -13,7 +13,8 @@
             "import": "./dist/vue-modal.js",
             "require": "./dist/vue-modal.umd.cjs",
             "default": "./dist/vue-modal.umd.cjs"
-        }
+        },
+        "./dist/style.css": "./dist/style.css"
     },
     "scripts": {
         "dev": "vite",
