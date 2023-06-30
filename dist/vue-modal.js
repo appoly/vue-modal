@@ -1,10 +1,10 @@
-import { openBlock as l, createElementBlock as d, createVNode as m, Transition as f, withCtx as k, createCommentVNode as u, withDirectives as C, normalizeStyle as p, createElementVNode as o, normalizeClass as r, renderSlot as c, toDisplayString as y, vShow as g } from "vue";
+import { openBlock as l, createElementBlock as d, createVNode as m, Transition as f, withCtx as y, createCommentVNode as u, withDirectives as C, normalizeStyle as p, createElementVNode as s, normalizeClass as r, renderSlot as c, toDisplayString as k, vShow as g } from "vue";
 const B = (t, e) => {
   const n = t.__vccOpts || t;
-  for (const [h, s] of e)
-    n[h] = s;
+  for (const [h, o] of e)
+    n[h] = o;
   return n;
-}, b = {
+}, w = {
   name: "VueModal",
   props: {
     confirmButtonText: {
@@ -58,6 +58,10 @@ const B = (t, e) => {
     maxHeight: {
       type: String,
       default: "75%"
+    },
+    escClosesModal: {
+      type: Boolean,
+      default: !0
     }
   },
   data() {
@@ -67,9 +71,6 @@ const B = (t, e) => {
     };
   },
   created() {
-    window.addEventListener("keydown", (t) => {
-      (t.key === "Escape" || t.key === "Esc" || t.key === 27) && this.handleOutsideClick();
-    });
   },
   watch: {
     show(t) {
@@ -128,7 +129,7 @@ const B = (t, e) => {
       this.$emit("cancel"), this.closeOnButtonClick && this.closeModal();
     },
     closeModal() {
-      this.show = !1;
+      this.show = !1, window.removeEventListener("keydown", this.handleEsc);
     },
     handleOutsideClick() {
       this.closeOnOutsideClick && this.cancelButtonClicked();
@@ -137,15 +138,18 @@ const B = (t, e) => {
       this.$emit("confirm"), this.closeOnButtonClick && this.closeModal();
     },
     openModal() {
-      this.initiated = !0, this.show = !0;
+      window.addEventListener("keydown", this.handleEsc), this.initiated = !0, this.show = !0;
+    },
+    handleEsc(t) {
+      (t.key === "Escape" || t.key === "Esc" || t.key === 27) && this.escClosesModal && this.handleOutsideClick();
     }
   }
-}, w = { class: "model-content" }, x = { class: "d-block" }, _ = { class: "buttons-footer" };
-function v(t, e, n, h, s, i) {
+}, b = { class: "model-content" }, x = { class: "d-block" }, _ = { class: "buttons-footer" };
+function v(t, e, n, h, o, i) {
   return l(), d("div", null, [
     m(f, { name: i.backdropTransition }, {
-      default: k(() => [
-        s.show ? (l(), d("div", {
+      default: y(() => [
+        o.show ? (l(), d("div", {
           key: 0,
           class: "modal-backdrop",
           onClick: e[0] || (e[0] = (...a) => i.handleOutsideClick && i.handleOutsideClick(...a))
@@ -154,53 +158,53 @@ function v(t, e, n, h, s, i) {
       _: 1
     }, 8, ["name"]),
     m(f, { name: i.modalTransition }, {
-      default: k(() => [
-        s.initiated ? C((l(), d("div", {
+      default: y(() => [
+        o.initiated ? C((l(), d("div", {
           key: 0,
           class: "modal",
           style: p({ width: i.computedWidth, "max-height": i.computedMaxHeight })
         }, [
-          o("header", {
+          s("header", {
             class: r(i.headerClass)
           }, [
             c(t.$slots, "header", {}, void 0, !0)
           ], 2),
-          o("div", w, [
-            o("section", null, [
+          s("div", b, [
+            s("section", null, [
               c(t.$slots, "body", {}, void 0, !0)
             ])
           ]),
-          o("footer", {
+          s("footer", {
             class: r(i.footerClass)
           }, [
-            o("div", x, [
+            s("div", x, [
               c(t.$slots, "footer", {}, void 0, !0)
             ]),
-            o("div", _, [
+            s("div", _, [
               c(t.$slots, "buttons", {}, () => [
-                o("button", {
+                s("button", {
                   type: "button",
                   class: r(n.cancelButtonClass),
                   onClick: e[1] || (e[1] = (...a) => i.cancelButtonClicked && i.cancelButtonClicked(...a))
-                }, y(n.cancelButtonText), 3),
+                }, k(n.cancelButtonText), 3),
                 n.showConfirmButton ? (l(), d("button", {
                   key: 0,
                   type: "button",
                   class: r(n.confirmButtonClass),
                   onClick: e[2] || (e[2] = (...a) => i.confirm && i.confirm(...a))
-                }, y(n.confirmButtonText), 3)) : u("", !0)
+                }, k(n.confirmButtonText), 3)) : u("", !0)
               ], !0)
             ])
           ], 2)
         ], 4)), [
-          [g, s.show]
+          [g, o.show]
         ]) : u("", !0)
       ]),
       _: 3
     }, 8, ["name"])
   ]);
 }
-const M = /* @__PURE__ */ B(b, [["render", v], ["__scopeId", "data-v-3a19ad3a"]]);
+const O = /* @__PURE__ */ B(w, [["render", v], ["__scopeId", "data-v-8c6374f0"]]);
 export {
-  M as VueModal
+  O as VueModal
 };
