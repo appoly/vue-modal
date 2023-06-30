@@ -24,17 +24,18 @@ npm install @appoly/vue-modal
 | :-------------------- | :------- | :------ | :------------------------------------------------------------------------------------------------- |
 | `confirmButtonText`   | `string` | Confirm | Text displayed on the confirm button                                                               |
 | `confirmButtonClass`  | `string` |         | Custom class for the confirm button                                                                |
-| `closeOnOutsideClick` | `bool`   | `True`  | Close the modal by clicking on the outside                                                         |
-| `showConfirmButton`   | `string` | `True`  | Display the confirm button                                                                         |
+| `closeOnOutsideClick` | `bool`   | `true`  | Close the modal by clicking on the outside                                                         |
+| `showConfirmButton`   | `string` | `true`  | Display the confirm button                                                                         |
 | `cancelButtonText`    | `string` | Cancel  | Text displayed on the cancel button                                                                |
 | `cancelButtonClass`   | `string` |         | Custom class for the cancel button                                                                 |
-| `closeOnButtonClick`  | `bool`   | `True`  | Modal can be closed on cancel/confirm click or an event is emitted and can be closed via functions |
+| `closeOnButtonClick`  | `bool`   | `true`  | Modal can be closed on cancel/confirm click or an event is emitted and can be closed via functions |
+| `escClosesModal`      | `bool`   | `true`  | Should the modal close if the Esc key is pressed (and `closeOnOutsideClick` is True)               |
 | `animation`           | `string` | `zoom`  | Animation type, options include `zoom, bounce, fade & none`                                        |
 | `timeout`             | `number` | `0`     | Should the modal automatically close, time set in milliseconds                                     |
 | `width`               | `string` | `700px` | Width of the modal in px, rem, em, %. Just numbers default to px                                   |
 | `maxHeight`           | `string` | `75%`   | Height of the modal in px, rem, em, %. Just number default to px                                   |
-| `sticky-header`       | `bool`   | `False` | Should the modal have a sticky header                                                              |
-| `sticky-footer`       | `bool`   | `False` | Should the modal have a sticky footer                                                              |
+| `sticky-header`       | `bool`   | `false` | Should the modal have a sticky header                                                              |
+| `sticky-footer`       | `bool`   | `false` | Should the modal have a sticky footer                                                              |
 
 ## Slots
 
