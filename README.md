@@ -50,7 +50,6 @@ npm install @appoly/vue-modal
 
 ```javascript
 import VueModal from '@appoly/vue-modal';
-import '@appoly/vue-modal/dist/style.css';
 ```
 
 ```vue
