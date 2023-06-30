@@ -1,6 +1,6 @@
 {
   "name": "@appoly/vue-modal",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "A simple modal component built with Vue.js",
   "watch":{
     "files": [
