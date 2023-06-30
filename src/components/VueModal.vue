@@ -91,6 +91,10 @@ export default {
             type: String,
             default: "75%",
         },
+        escClosesModal: {
+            type: Boolean,
+            default: true,
+        },
     },
     data() {
         return {
@@ -100,11 +104,6 @@ export default {
     },
     created() {
         //listen for esc key press
-        window.addEventListener('keydown', (event) => {
-            if (event.key === 'Escape' || event.key === 'Esc' || event.key === 27) {
-                this.handleOutsideClick();
-            }
-        });
     },
     watch: {
         show(newValue) {
@@ -180,6 +179,7 @@ export default {
         },
         closeModal() {
             this.show = false;
+            window.removeEventListener('keydown', this.handleEsc);
         },
         handleOutsideClick() {
             if (this.closeOnOutsideClick) {
@@ -193,9 +193,18 @@ export default {
             }
         },
         openModal() {
+            window.addEventListener('keydown', this.handleEsc);
             this.initiated = true;
             this.show = true;
         },
+        handleEsc(event) {
+            if (
+                (event.key === 'Escape' || event.key === 'Esc' || event.key === 27)
+                && this.escClosesModal
+            ) {
+                this.handleOutsideClick();
+            }
+        }
     },
 };
 </script>
