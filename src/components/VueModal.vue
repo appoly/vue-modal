@@ -102,9 +102,6 @@ export default {
             show: false,
         };
     },
-    created() {
-        //listen for esc key press
-    },
     watch: {
         show(newValue) {
             if (newValue) {
