@@ -1,5 +1,7 @@
 # Vue Modal
 
+A simple and customizable modal component built with Vue.js. This component provides an easy-to-use interface for creating modals with various customization options.
+
 <p align="center">
   <img src="https://img.shields.io/npm/v/@appoly/vue-modal" />
   <img src="https://img.shields.io/npm/dt/@appoly/vue-modal" />
@@ -12,66 +14,108 @@
 
 ## Installation
 
-Install Vue Modal with npm
+Install the package via npm:
 
-```bash
-npm install @appoly/vue-modal
+```bash 
+npm install @appoly/vue-modal 
+```
+
+## Usage
+
+Import and register the component in your Vue application:
+
+```javascript
+import VueModal from '@appoly/vue-modal';
+
+export default {
+    components: {
+        VueModal
+    }
+}
+```
+
+Use the component in your template:
+
+```html 
+<vue-modal ref="modal">  
+    <template #header>  
+        <h3>Modal Header</h3>  
+    </template>  
+    <template #body>  
+        <p>This is the body content of the modal.</p>  
+    </template>  
+    <template #footer>  
+        <p>Footer content</p>  
+    </template>  
+    <template #buttons>  
+        <button @click="cancel">Cancel</button>  
+        <button @click="confirm">Confirm</button>  
+    </template> 
+</vue-modal> 
+```
+
+### Open the Modal
+
+To open the modal, use the openModal method:
+
+```javascript 
+this.$refs.modal.openModal(); 
 ```
 
 ## Props
 
-| Prop                  | Type     | Default | Description                                                                                        |
-| :-------------------- | :------- | :------ | :------------------------------------------------------------------------------------------------- |
-| `confirmButtonText`   | `string` | Confirm | Text displayed on the confirm button                                                               |
-| `confirmButtonClass`  | `string` |         | Custom class for the confirm button                                                                |
-| `closeOnOutsideClick` | `bool`   | `true`  | Close the modal by clicking on the outside                                                         |
-| `showConfirmButton`   | `string` | `true`  | Display the confirm button                                                                         |
-| `cancelButtonText`    | `string` | Cancel  | Text displayed on the cancel button                                                                |
-| `cancelButtonClass`   | `string` |         | Custom class for the cancel button                                                                 |
-| `closeOnButtonClick`  | `bool`   | `true`  | Modal can be closed on cancel/confirm click or an event is emitted and can be closed via functions |
-| `escClosesModal`      | `bool`   | `true`  | Should the modal close if the Esc key is pressed (and `closeOnOutsideClick` is True)               |
-| `animation`           | `string` | `zoom`  | Animation type, options include `zoom, bounce, fade & none`                                        |
-| `timeout`             | `number` | `0`     | Should the modal automatically close, time set in milliseconds                                     |
-| `width`               | `string` | `700px` | Width of the modal in px, rem, em, %. Just numbers default to px                                   |
-| `maxHeight`           | `string` | `75%`   | Height of the modal in px, rem, em, %. Just number default to px                                   |
-| `sticky-header`       | `bool`   | `false` | Should the modal have a sticky header                                                              |
-| `sticky-footer`       | `bool`   | `false` | Should the modal have a sticky footer                                                              |
+| Prop | Type | Default | Description |
+|---------------------|-----------|-----------------------------|-------------------------------------------------------------------|
+| confirmButtonText | String | "Confirm" | Text for the confirm button. |
+| confirmButtonClass| String | "btn btn-primary btn-large"| Class for the confirm button. |
+| closeOnOutsideClick| Boolean| true | Determines if clicking outside the modal should close it. |
+| showConfirmButton | Boolean | true | Controls the visibility of the confirm button. |
+| cancelButtonText | String | "Cancel" | Text for the cancel button. |
+| cancelButtonClass | String | "btn btn-danger btn-large mr-2" | Class for the cancel button. |
+| closeOnButtonClick| Boolean | true | Determines if clicking the confirm/cancel button should close the modal. |
+| animation | String | "zoom" | Animation type for the modal ("zoom", "bounce", "fade"). |
+| escClosesModal | Boolean | true | Should the modal close if the Esc key is pressed (and `closeOnOutsideClick` is True)|
+| timeout | Number | 0 | Auto-close modal after the specified timeout in milliseconds. |
+| stickyFooter | Boolean | false | Makes the footer sticky at the bottom of the modal. |
+| stickyHeader | Boolean | false | Makes the header sticky at the top of the modal. |
+| width | String | "700px" | Width of the modal. Supports units (px, %, em, rem). |
+| maxHeight | String | "75%" | Maximum height of the modal. Supports units (px, %, em, rem). |
+| escClosesModal | Boolean | true | Determines if pressing the Escape key should close the modal. |
 
 ## Slots
 
-| Slot      | Description                                             |
-| :-------- | :------------------------------------------------------ |
-| `header`  | Content for the top of the modal                        |
-| `body`    | Content for the center of the modal                     |
-| `footer`  | Content for the bottom of the modal (above the buttons) |
-| `buttons` | Replaces the buttons                                    |
+| Slot | Description |
+|-----------|---------------------------------------------------|
+| header | Content for the modal header. |
+| body | Content for the modal body. |
+| footer | Content for the modal footer. |
+| buttons | Custom buttons to display in the modal footer. |
 
-## Usage/Examples
+## Methods
 
-```javascript
-import VueModal from '@appoly/vue-modal';
-import '@appoly/vue-modal/dist/style.css';
-```
+| Method | Description |
+|------------------|---------------------------------------------------------|
+| openModal() | Opens the modal. |
+| closeModal() | Closes the modal. |
+| cancelButtonClicked() | Handles the cancel button click event. |
+| confirm() | Handles the confirm button click event. |
+| handleOutsideClick() | Closes the modal if clicking outside (if enabled). |
+| handleEsc(event) | Closes the modal if the Escape key is pressed (if enabled). |
 
-```vue
-<VueModal ref="myModal" timeout="5000">
-    <template #header>
-        <h1>My Modal</h1>
-        <hr>
-    </template>
-    <template #body>
-        <p>This modal will hide in 5 seconds</p>
-    </template>
-</VueModal>
-```
-## Open Modal
-```javascript
-this.$refs.myModal.openModal();
-```
+## Events
 
-## Close Modal
-If closeOnButtonClick is turned off you will need to listen for the `confirm` and `cancel` events and close the modal using
+| Event | Description |
+|----------|-------------------------------------|
+| cancel | Emitted when the cancel button is clicked. |
+| confirm| Emitted when the confirm button is clicked. |
 
-```javascript
-this.$refs.myModal.closeModal();
-```
+## Styles
+
+The modal component uses the following class names:
+
+- .modal-backdrop - For the modal backdrop.
+- .modal - For the modal container.
+- .model-content - For the content area within the modal.
+- .btn - For buttons within the modal.
+
+Custom animations are also provided for zoom, bounce, and fade.
